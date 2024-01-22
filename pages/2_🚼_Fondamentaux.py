@@ -1,7 +1,15 @@
 import streamlit as st
 import pandas as pd
 from datetime import time, datetime, date
-tab1,tab2,tab3,tab4 = st.tabs(["👋🏾Hello World !","🔤Texte","🖇️Widget","🎞️Layouts" ])
+st.set_page_config(
+    page_title="🚼 Fondamentaux",
+    page_icon=":chart_with_upwards_trend:",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+st.title("🚼 Fondamentaux")
+tab1,tab2,tab3,tab4 = st.tabs(["👋🏾Hello World !","🔤Texte",
+                               "🖇️Widget","🎞️Layouts" ])
 
 with tab1 : 
     st.markdown("""
@@ -284,12 +292,16 @@ with tab3 :
         
         
         st.markdown("""
-        Dans cet exemple, une case à cocher est créée avec l'étiquette "Activer une option". La valeur de la case à cocher (True ou False) est stockée dans la variable `option_selected`. En fonction de la sélection de la case à cocher, différents messages sont affichés.
+        Dans cet exemple, une case à cocher est créée avec l'étiquette "Activer une option". La valeur de la case à cocher 
+        (True ou False) est stockée dans la variable `option_selected`. En fonction de la sélection de la case à cocher,
+        différents messages sont affichés.
 
         **Fonctionnalités clés :**
         - **Réactivité :** La variable associée à `st.checkbox` est mise à jour en temps réel en fonction de l'état de la case à cocher.
-        - **Personnalisation :** Vous pouvez personnaliser l'étiquette de la case à cocher pour refléter l'option que vous souhaitez activer ou désactiver.
-        - **Utilisation conditionnelle :** Vous pouvez utiliser la valeur de la case à cocher pour prendre des décisions conditionnelles dans votre application.
+        - **Personnalisation :** Vous pouvez personnaliser l'étiquette de la case à cocher pour refléter l'option
+        que vous souhaitez activer ou désactiver.
+        - **Utilisation conditionnelle :** Vous pouvez utiliser la valeur de la case à cocher pour prendre des 
+        décisions conditionnelles dans votre application.
 
         En utilisant `st.checkbox`, vous pouvez ajouter des fonctionnalités 
         interactives à votre application Streamlit, permettant aux utilisateurs 
@@ -647,7 +659,9 @@ with tab3 :
             """)
         with h :
             st.markdown("""
-            `st.date_input` est une fonction dans Streamlit qui permet de créer un sélecteur de date interactif. Cette fonction est utile lorsque vous souhaitez permettre aux utilisateurs de sélectionner une date spécifique dans votre application Streamlit.
+            `st.date_input` est une fonction dans Streamlit qui permet de créer un sélecteur de date interactif. 
+            Cette fonction est utile lorsque vous souhaitez permettre aux utilisateurs de sélectionner une date spécifique dans votre 
+            application Streamlit.
 
             """)
             with st.expander('**Utilisation :**', True):
@@ -708,7 +722,8 @@ with tab3 :
 
                     # Traitement des données après la soumission
                     if soumettre:
-                        st.write(f"Vous avez saisi : Texte - **:blue[{texte}]**, Animal - **:blue[{choix}]**, Nombre - **:blue[{nombre}]**, Date - **:blue[{date}]**")
+                        st.write(f'''Vous avez saisi : Texte - **:blue[{texte}]**, Animal - **:blue[{choix}]**, 
+                                 Nombre - **:blue[{nombre}]**, Date - **:blue[{date}]**''')
                     
             with st.expander("Code ", True):
                 st.code("""
@@ -727,7 +742,8 @@ with tab3 :
 
                 # Traitement des données après la soumission
                 if soumettre:
-                    st.write(f"Vous avez saisi : Texte - **:blue[{texte}]**, Animal - **:blue[{choix}]**, Nombre - **:blue[{nombre}]**, Date - **:blue[{date}]**") """)
+                    st.write(f'''Vous avez saisi : Texte - **:blue[{texte}]**, Animal - **:blue[{choix}]**,
+                    Nombre - **:blue[{nombre}]**, Date - **:blue[{date}]**''') """)
                 
         st.markdown("""
             Dans cet exemple, un formulaire est créé avec l'étiquette 
@@ -745,4 +761,182 @@ with tab3 :
             entrées de l'utilisateur en une seule fois et de traiter ces entrées de 
             manière cohérente. 
             Cela simplifie la gestion des formulaires dans vos applications Streamlit.
+                                """)
+
+with tab4 : 
+    
+    a,b,c,d,e = st.tabs(["Sidebar", "Colonnes","Tabs(Onglets)", "Expander", "Code"])
+    
+    with a : 
+        st.markdown(""" 
+            `st.sidebar` est une fonction dans Streamlit qui permet de créer des éléments dans la barre latérale de l'interface 
+            utilisateur. La barre latérale est souvent utilisée pour afficher des contrôles interactifs, des paramètres ou d'autres 
+            éléments qui ne font pas partie du contenu principal de l'application, mais qui sont accessibles facilement.""")
+
+        
+        #   with st.expander('**Utilisation :**', True):
+            #    # Utilisation de st.sidebar pour ajouter des éléments dans la barre latérale
+            #    st.sidebar.header("Options")
+            #    texte_sidebar = st.sidebar.text_input("Entrez du texte","Abraham")
+            #    nombre_sidebar = st.sidebar.number_input("Entrez un nombre", min_value=0, max_value=100, value=27)
+
+                # Affichage des valeurs saisies dans le contenu principal
+            #    st.write(f"Vous avez saisi en barre latérale : Texte - **:blue[{texte_sidebar}]**, Nombre - **:blue[{nombre_sidebar}]**")
+        
+        with st.expander("Code ", True):
+            st.code("""  
+                    import streamlit as st
+
+                    # Utilisation de st.sidebar pour ajouter des éléments dans la barre latérale
+                    st.sidebar.header("Options")
+                    texte_sidebar = st.sidebar.text_input("Entrez du texte","Abraham")
+                    nombre_sidebar = st.sidebar.number_input("Entrez un nombre", min_value=0, max_value=100, value=27)
+
+                    # Affichage des valeurs saisies dans le contenu principal
+                    st.write(f"Vous avez saisi en barre latérale : Texte - **:blue[{texte_sidebar}]**, Nombre - **:blue[{nombre_sidebar}]**")
+                    """)
+            st.markdown(""" 
+            Dans cet exemple, un champ de saisie de texte et un curseur numérique sont ajoutés à la barre latérale à l'aide de
+            `st.sidebar`. Les valeurs saisies dans la barre latérale sont ensuite affichées dans le contenu principal de l'application.
+
+            **Fonctionnalités clés :**
+            - **Contrôles interactifs :** Vous pouvez utiliser `st.sidebar` pour ajouter divers contrôles interactifs tels que des champs de 
+            saisie, des curseurs, des boutons, etc.
+            - **Réactivité :** Les valeurs associées aux contrôles dans la barre latérale sont mises à jour en temps réel.
+            - **Organisation :** La barre latérale est utile pour organiser les paramètres et contrôles de manière à ne pas encombrer le contenu 
+            principal de l'application.
+
+            L'utilisation de `st.sidebar` permet d'ajouter une dimension interactive et personnalisée à votre application Streamlit en plaçant 
+            certains éléments dans une barre latérale distincte.
+            """)
+    with b : 
+    
+        st.markdown("""
+        `st.columns` est une fonction dans Streamlit qui permet de créer des colonnes dans la mise en page de votre application. Cette 
+        fonction est particulièrement utile lorsque vous souhaitez organiser le contenu de votre application en colonnes pour une présentation 
+        plus structurée. """)
+
+        with st.expander('**Utilisation :**', True):
+            colonne1, colonne2 = st.columns(2)
+
+            # Ajout de contenu dans chaque colonne
+            with colonne1:
+                st.header("Colonne 1")
+                st.write("Contenu de la colonne ") 
+                st.image("images/chien.png")
+
+            with colonne2:
+                st.header("Colonne 2")
+                st.write("Contenu de la colonne 2") 
+                st.image("images/minion.jpg")
+        with st.expander("Code ", True):
+            st.code("""  
+            import streamlit as st
+
+            # Création de deux colonnes avec st.columns
+            colonne1, colonne2 = st.columns(2)
+
+            # Ajout de contenu dans chaque colonne
+            with colonne1:
+                st.header("Colonne 1")
+                st.write("Contenu de la colonne ") 
+                st.image("images/chien.png")
+
+            with colonne2:
+                st.header("Colonne 2")
+                st.write("Contenu de la colonne 2") 
+                st.image("images/minion.jpg")
+                """)
+        st.markdown("""
+        Dans cet exemple, deux colonnes sont créées à l'aide de `st.columns(2)`, ce qui divise l'espace horizontal 
+        en deux parties égales. Ensuite, du contenu est ajouté à chaque colonne avec les blocs `with colonne1:` et `with colonne2:`.
+
+        **Fonctionnalités clés :**
+        - **Répartition de l'espace :** Vous pouvez spécifier le nombre de colonnes que vous souhaitez en passant un argument à `st.columns(n)`,
+        où `n` est le nombre de colonnes.
+        - **Contenu dans chaque colonne :** Vous pouvez ajouter du contenu, des widgets, des graphiques, etc., à chaque colonne en 
+        utilisant les blocs `with colonneX:`.
+
+        `st.columns` est utile pour créer une disposition de colonnes personnalisée dans votre application Streamlit, ce qui est particulièrement pratique lorsque 
+        vous avez plusieurs éléments à afficher de manière côte à côte.
+                                """)
+    with c: 
+        st.markdown(""""
+                    
+                        """)
+    with d: 
+        st.markdown("""
+        `st.expander` est une fonction dans Streamlit qui permet de créer un panneau extensible (expander) dans lequel vous pouvez inclure du contenu. 
+        Cela est utile lorsque vous avez du contenu supplémentaire que vous souhaitez rendre initialement caché et permettre à l'utilisateur de l'expander ou de le réduire 
+        selon ses besoins.
+        
+        ### **Utilisation**
+        """)
+
+
+        with st.expander("Cliquez pour afficher le contenu",False):
+            st.write("**:blue[Contenu caché que vous pouvez étendre ou réduire].**")
+        with st.expander("Code ", True):
+            st.code("""  
+            # Utilisation de st.expander pour créer un panneau extensible
+            with st.expander("Cliquez pour afficher le contenu",False):
+                st.write("Contenu caché que vous pouvez étendre ou réduire.")
+                    """)
+            
+        st.markdown("""
+        Dans cet exemple, le texte "Cliquez pour afficher le contenu" est affiché en tant que titre du panneau extensible créé avec `st.expander`. 
+        Lorsque l'utilisateur clique sur ce titre, le panneau s'étend pour révéler le contenu caché, et il peut être réduit à nouveau en cliquant sur le titre.
+
+        **Fonctionnalités clés :**
+        - **Contenu extensible :** Vous pouvez inclure n'importe quel widget ou contenu à l'intérieur du panneau extensible.
+        - **Facilité d'utilisation :** L'utilisateur peut cliquer sur le titre pour étendre ou réduire le panneau, ce qui permet de conserver un espace propre dans votre 
+        application.
+
+        `st.expander` est particulièrement utile lorsque vous avez des informations complémentaires ou des détails que vous ne souhaitez pas afficher immédiatement, mais que 
+        vous souhaitez rendre disponibles de manière optionnelle à l'utilisateur.
+        """)
+    with e: 
+        st.markdown("""
+        La fonction `st.code` dans Streamlit est utilisée pour afficher du code source dans votre application Streamlit. Elle prend en charge plusieurs langages de 
+        programmation et fournit une mise en forme syntaxique pour rendre le code plus lisible.
+        """)
+        
+        with st.expander('**Utilisation :**', True):
+            # Utilisation de st.code pour afficher du code Python
+            code_python = '''
+            public class HelloWorld {
+                public static void main(String[] args) {
+                    System.out.println("Hello, World!");
+                }
+            }
+            '''
+
+            st.code(code_python, language='java')
+        with st.expander("Code ", True):
+            st.code(""" 
+            import streamlit as st
+
+            # Utilisation de st.code pour afficher du code Python
+            code_python = '''
+            public class HelloWorld {
+                public static void main(String[] args) {
+                    System.out.println("Hello, World!");
+                }
+            }
+            '''
+
+            st.code(code_python, language='java')
+                    """)
+        st.markdown("""
+        Dans cet exemple, le code Python contenu dans la chaîne `code_python` est affiché à l'aide de `st.code`. L'argument `language` spécifie le langage du code pour une 
+        mise en forme syntaxique appropriée.
+
+        **Fonctionnalités clés :**
+        - **Prise en charge de plusieurs langages :** Vous pouvez spécifier le langage du code source pour une mise en forme syntaxique correcte.
+        - **Mise en forme syntaxique :** Le code est présenté de manière à ce que les éléments tels que les mots-clés, les chaînes de caractères, 
+        les commentaires, etc., soient mis en surbrillance pour une meilleure lisibilité.
+        - **Possibilité de plier/déplier le code :** Streamlit offre une fonctionnalité qui permet de plier et déplier le code pour économiser de l'espace.
+
+        L'utilisation de `st.code` est particulièrement utile lorsque vous souhaitez partager des exemples de code, des extraits de code ou des démonstrations 
+        dans votre application Streamlit.
                                 """)
