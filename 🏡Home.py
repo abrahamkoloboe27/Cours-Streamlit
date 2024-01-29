@@ -1,4 +1,24 @@
 import streamlit as st
+st.set_page_config(
+    page_title="🏡Home",
+    page_icon=":chart_with_upwards_trend:",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+#st.image("images/st.gif")
+with st.sidebar : 
+    st.markdown("""
+    ## Authors
+    John R. AOGA
+    * Email : <johnaoga@gmail.com>
+    * WhatsApp : +229 97 99 92 77
+    * Linkedin : [John AOGA](https://www.linkedin.com/in/john-aoga-2ba6a862/)
+                
+    Abraham KOLOBOE
+    * Email : <abklb27@gmail.com>
+    * WhatsApp : +229 91 83 84 21
+    * Linkedin : [Abraham KOLOBOE](https://www.linkedin.com/in/abraham-koloboe-630683263)
+                """)
 st.image(image="images/streamlit.png")
 tab1,tab2,tab3, tab4 = st.tabs(["Description","Avantages","Plan du cours", "Quelques liens utiles" ])
 with tab1 : 

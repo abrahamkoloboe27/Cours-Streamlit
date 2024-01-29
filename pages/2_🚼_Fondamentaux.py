@@ -7,6 +7,19 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
+with st.sidebar : 
+    st.markdown("""
+    ## Authors
+    John R. AOGA
+    * Email : <johnaoga@gmail.com>
+    * WhatsApp : +229 97 99 92 77
+    * Linkedin : [John AOGA](https://www.linkedin.com/in/john-aoga-2ba6a862/)
+                
+    Abraham KOLOBOE
+    * Email : <abklb27@gmail.com>
+    * WhatsApp : +229 91 83 84 21
+    * Linkedin : [Abraham KOLOBOE](https://www.linkedin.com/in/abraham-koloboe-630683263)
+                """)
 st.title("🚼 Fondamentaux")
 tab1,tab2,tab3,tab4 = st.tabs(["👋🏾Hello World !","🔤Texte",
                                "🖇️Widget","🎞️Layouts" ])
@@ -861,9 +874,28 @@ with tab4 :
         vous avez plusieurs éléments à afficher de manière côte à côte.
                                 """)
     with c: 
-        st.markdown(""""
-                    
+        st.markdown("""
+        `st.tabs` est une fonction qui permet de créer des onglets dans une application streamlit.
                         """)
+        with st.expander("""**Utilisation**""", True) : 
+            tab__1 , tab__2 = st.tabs(["Onglet 1", "Onglet 2"])
+            with tab__1 :
+                st.write("Voici Homer !")
+                st.image("images/homer.png")
+            with tab__2 :
+                st.write("Voici Bart !")
+                st.image("images/bart.png")
+        with st.expander("""**Code**""", True) :
+            st.code("""
+            tab__1 , tab__2 = st.tabs(["Onglet 1", "Onglet 2"])
+            with tab__1 :
+                st.write("Voici Homer !")
+                st.image("images/homer.png")
+            with tab__2 :
+                st.write("Voici Bart !")
+                st.image("images/bart.png")
+                """
+            )
     with d: 
         st.markdown("""
         `st.expander` est une fonction dans Streamlit qui permet de créer un panneau extensible (expander) dans lequel vous pouvez inclure du contenu. 
