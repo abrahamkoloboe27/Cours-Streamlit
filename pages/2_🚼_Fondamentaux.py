@@ -9,10 +9,8 @@ st.set_page_config(
 )
 with st.sidebar : 
     st.markdown("""
-    ## Authors
+    ## Auteurs
     John R. AOGA
-    * Email : <johnaoga@gmail.com>
-    * WhatsApp : +229 97 99 92 77
     * Linkedin : [John AOGA](https://www.linkedin.com/in/john-aoga-2ba6a862/)
                 
     Abraham KOLOBOE

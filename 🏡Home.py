@@ -8,10 +8,8 @@ st.set_page_config(
 #st.image("images/st.gif")
 with st.sidebar : 
     st.markdown("""
-    ## Authors
+    ## Auteurs
     John R. AOGA
-    * Email : <johnaoga@gmail.com>
-    * WhatsApp : +229 97 99 92 77
     * Linkedin : [John AOGA](https://www.linkedin.com/in/john-aoga-2ba6a862/)
                 
     Abraham KOLOBOE
@@ -132,6 +130,19 @@ with tab3 :
     """)
 
 with tab4 : 
-    st.markdown("""
+    st.markdown(""" 
+        * [Site officiel de streamlit](https://streamlit.io/)
+                
+        * [Documentation officielle](https://docs.streamlit.io/)
+                
+        * [Cloud de Streamlit](https://streamlit.io/cloud)
+                
+        * [Gallerie de Streamlit](https://streamlit.io/gallery)
+                
+        * [Github de Streamlit](https://github.com/streamlit)
+                
+        * [Streamlit Community](https://discuss.streamlit.io/)
+                
+        * [Youtube de Streamlit](https://www.youtube.com/channel/UC3LD42rjj-Owtxsa6PwGU5Q)
                 
                 """)
