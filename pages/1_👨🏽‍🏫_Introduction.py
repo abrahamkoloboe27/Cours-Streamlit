@@ -11,12 +11,15 @@ with st.sidebar :
     ## Auteurs
     John R. AOGA
     * Linkedin : [John AOGA](https://www.linkedin.com/in/john-aoga-2ba6a862/)
+    """)
                 
-    Abraham KOLOBOE
-    * Email : <abklb27@gmail.com>
-    * WhatsApp : +229 91 83 84 21
-    * Linkedin : [Abraham KOLOBOE](https://www.linkedin.com/in/abraham-koloboe-630683263)
-                """)
+with st.sidebar : 
+        st.markdown("""
+        :blue[Abraham KOLOBOE]
+        * Email : <abklb27@gmail.com>
+        * WhatsApp : +229 91 83 84 21
+        * Linkedin : [Abraham KOLOBOE](https://www.linkedin.com/in/abraham-zacharie-koloboe-data-science-ia-generative-llms-machine-learning)
+                    """)
 
 st.title("👨🏽‍🏫 Introduction")
 
