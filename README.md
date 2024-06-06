@@ -2,10 +2,11 @@
 
 This repository contains the materials for learning Streamlit, a Python library used for creating web applications for data science and machine learning projects. 
 ## Auteur
-  Abraham KOLOBOE
-  * Email : <abklb27@gmail.com>
-  * WhatsApp : +229 91 83 84 21
-  * Linkedin : [Abraham KOLOBOE](https://www.linkedin.com/in/abraham-koloboe-630683263)
+:blue[Abraham KOLOBOE]
+* Email : <abklb27@gmail.com>
+* WhatsApp : +229 91 83 84 21
+* Linkedin : [Abraham KOLOBOE](https://www.linkedin.com/in/abraham-zacharie-koloboe-data-science-ia-generative-llms-machine-learning)
+
     
 ## Project Structure
 
