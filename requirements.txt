@@ -1,4 +1,6 @@
-matplotlib==3.7.2
-matplotlib-inline==0.1.6
-plotly==5.15.0
-plotly-resampler==0.9.1
+streamlit
+pandas 
+matplotlib
+matplotlib-inline
+plotly
+plotly-resampler
