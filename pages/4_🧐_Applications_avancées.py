@@ -21,8 +21,9 @@ with st.sidebar :
         * WhatsApp : +229 91 83 84 21
         * Linkedin : [Abraham KOLOBOE](https://www.linkedin.com/in/abraham-zacharie-koloboe-data-science-ia-generative-llms-machine-learning)
                     """)
-tab1 , tab2 , tab3, tab4, tab5 = st.tabs(["Applications multi-pages", "Session state", 
-                              "Barre de progression", "Spinner", "Configuration de pages"])
+tab1 , tab2 , tab3, tab4, tab5, tab6, tab7 = st.tabs(["Applications multi-pages", "Session state", 
+                              "Barre de progression", "Spinner", "Configuration de pages", 
+                              "Cache et Performance", "Déploiement"])
 
 
 with tab1 : 
@@ -254,3 +255,268 @@ with tab5 :
     L'utilisation de `st.set_page_config` vous permet de définir ces configurations 
     au début de votre script Streamlit pour influencer l'apparence globale de votre application.
                     """)
+
+with tab6 : 
+    st.markdown("""
+    ## 🚀 Optimisation des Performances avec le Caching
+    
+    Streamlit propose deux fonctions principales de mise en cache pour optimiser les performances de vos applications :
+    
+    ### `st.cache_data` - Pour les données
+    
+    `st.cache_data` est utilisé pour mettre en cache les données (DataFrames, listes, dictionnaires, etc.). 
+    Cette fonction est idéale pour :
+    - Charger des données depuis un fichier ou une base de données
+    - Effectuer des calculs coûteux sur des données
+    - Appeler des API externes
+    - Transformer des données
+    
+    **Exemple d'utilisation :**
+    """)
+    
+    with st.expander("**Utilisation de st.cache_data**", True):
+        st.code("""
+import streamlit as st
+import pandas as pd
+import time
+
+@st.cache_data
+def charger_donnees(fichier):
+    # Simulation d'un chargement de données lent
+    time.sleep(2)
+    df = pd.read_csv(fichier)
+    return df
+
+# Le premier appel prendra 2 secondes
+# Les appels suivants seront instantanés
+df = charger_donnees("mes_donnees.csv")
+st.dataframe(df)
+        """, language="python")
+        
+        st.info("""
+        💡 **Conseil** : Utilisez `st.cache_data` pour toutes les fonctions qui retournent des données. 
+        Le cache sera invalidé automatiquement si les paramètres d'entrée changent.
+        """)
+    
+    st.markdown("""
+    ### `st.cache_resource` - Pour les ressources
+    
+    `st.cache_resource` est utilisé pour mettre en cache des ressources globales (connexions de base de données, 
+    modèles ML, etc.). Cette fonction est idéale pour :
+    - Connexions à des bases de données
+    - Modèles de machine learning
+    - Clients d'API
+    - Ressources qui ne doivent être créées qu'une seule fois
+    
+    **Exemple d'utilisation :**
+    """)
+    
+    with st.expander("**Utilisation de st.cache_resource**", True):
+        st.code("""
+import streamlit as st
+import pickle
+
+@st.cache_resource
+def charger_modele():
+    # Chargement d'un modèle ML (une seule fois)
+    with open('modele.pkl', 'rb') as f:
+        modele = pickle.load(f)
+    return modele
+
+# Le modèle est chargé une seule fois et réutilisé
+modele = charger_modele()
+prediction = modele.predict(nouvelles_donnees)
+        """, language="python")
+        
+        st.warning("""
+        ⚠️ **Attention** : N'utilisez `st.cache_resource` que pour des objets qui peuvent être partagés 
+        entre tous les utilisateurs de l'application.
+        """)
+    
+    st.markdown("""
+    ### Paramètres avancés du cache
+    
+    Les deux fonctions acceptent des paramètres optionnels :
+    - **ttl** : Durée de vie du cache en secondes
+    - **max_entries** : Nombre maximum d'entrées dans le cache
+    - **show_spinner** : Afficher ou non un spinner pendant le chargement
+    """)
+    
+    with st.expander("**Exemple avec paramètres**", True):
+        st.code("""
+# Cache expirant après 1 heure
+@st.cache_data(ttl=3600)
+def obtenir_donnees_api():
+    return requests.get("https://api.exemple.com/data").json()
+
+# Cache limité à 10 entrées
+@st.cache_data(max_entries=10)
+def calculer_statistiques(df):
+    return df.describe()
+
+# Sans spinner
+@st.cache_data(show_spinner=False)
+def chargement_rapide():
+    return pd.read_csv("petit_fichier.csv")
+        """, language="python")
+
+with tab7 : 
+    st.markdown("""
+    ## 🌐 Déploiement de votre Application Streamlit
+    
+    Une fois votre application développée, vous pouvez la déployer pour la rendre accessible à tous. 
+    Voici les principales options de déploiement.
+    
+    ### 1. Streamlit Community Cloud (Recommandé) ☁️
+    
+    **Streamlit Community Cloud** est la solution officielle gratuite pour déployer vos applications Streamlit.
+    
+    **Avantages :**
+    - ✅ Gratuit pour les projets publics
+    - ✅ Déploiement en quelques clics
+    - ✅ Intégration directe avec GitHub
+    - ✅ Mises à jour automatiques
+    - ✅ Gestion des secrets sécurisée
+    """)
+    
+    with st.expander("**📋 Étapes de déploiement sur Streamlit Cloud**", True):
+        st.markdown("""
+        1. **Préparez votre code** :
+           - Créez un fichier `requirements.txt` avec toutes vos dépendances
+           - Assurez-vous que votre code fonctionne localement
+        
+        2. **Poussez sur GitHub** :
+           ```bash
+           git init
+           git add .
+           git commit -m "Initial commit"
+           git push origin main
+           ```
+        
+        3. **Déployez sur Streamlit Cloud** :
+           - Allez sur [share.streamlit.io](https://share.streamlit.io)
+           - Connectez votre compte GitHub
+           - Sélectionnez votre dépôt
+           - Spécifiez le fichier principal (ex: `app.py`)
+           - Cliquez sur "Deploy"
+        
+        4. **Gérez les secrets** (optionnel) :
+           - Dans les paramètres de l'application
+           - Ajoutez vos variables d'environnement et clés API
+        """)
+    
+    st.markdown("""
+    ### 2. Autres Options de Déploiement
+    
+    #### Heroku 🔴
+    - Plateforme cloud populaire
+    - Support de Docker
+    - Niveau gratuit disponible (avec limitations)
+    """)
+    
+    with st.expander("**Déploiement sur Heroku**", True):
+        st.code("""
+# Créez ces fichiers :
+
+# requirements.txt
+streamlit>=1.32.0
+pandas>=2.0.0
+
+# setup.sh
+mkdir -p ~/.streamlit/
+echo "[server]
+headless = true
+port = $PORT
+enableCORS = false
+" > ~/.streamlit/config.toml
+
+# Procfile
+web: sh setup.sh && streamlit run app.py
+        """)
+        
+        st.markdown("""
+        Puis déployez :
+        ```bash
+        heroku create
+        git push heroku main
+        heroku open
+        ```
+        """)
+    
+    st.markdown("""
+    #### Docker 🐳
+    - Conteneurisation pour un déploiement flexible
+    - Portable sur n'importe quelle plateforme
+    """)
+    
+    with st.expander("**Dockerfile exemple**", True):
+        st.code("""
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# Copier les fichiers
+COPY requirements.txt .
+COPY app.py .
+
+# Installer les dépendances
+RUN pip install -r requirements.txt
+
+# Exposer le port
+EXPOSE 8501
+
+# Commande de démarrage
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+        """, language="dockerfile")
+        
+        st.markdown("""
+        Construire et exécuter :
+        ```bash
+        docker build -t mon-app-streamlit .
+        docker run -p 8501:8501 mon-app-streamlit
+        ```
+        """)
+    
+    st.markdown("""
+    ### 🔒 Bonnes Pratiques de Sécurité
+    
+    1. **Ne jamais committer de secrets** :
+       - Utilisez `.gitignore` pour exclure les fichiers sensibles
+       - Utilisez `st.secrets` pour gérer les clés API
+    
+    2. **Gérer les secrets avec Streamlit** :
+    """)
+    
+    with st.expander("**Utilisation de st.secrets**", True):
+        st.code("""
+# .streamlit/secrets.toml (ne jamais committer !)
+api_key = "votre_clé_secrète"
+database_url = "postgresql://user:password@host:5432/db"
+
+# Dans votre code Python
+import streamlit as st
+
+# Accéder aux secrets
+api_key = st.secrets["api_key"]
+db_url = st.secrets["database_url"]
+        """, language="python")
+    
+    st.markdown("""
+    ### 📊 Optimisation pour la Production
+    
+    Avant de déployer, assurez-vous de :
+    
+    - ✅ **Optimiser les performances** avec `@st.cache_data` et `@st.cache_resource`
+    - ✅ **Gérer les erreurs** avec des try-except appropriés
+    - ✅ **Tester** l'application avec différentes données
+    - ✅ **Documenter** le code et créer un README clair
+    - ✅ **Surveiller** les logs et les erreurs après le déploiement
+    - ✅ **Limiter les ressources** (taille des uploads, requêtes API, etc.)
+    
+    ### 📚 Ressources Utiles
+    
+    - [Documentation Streamlit Cloud](https://docs.streamlit.io/streamlit-community-cloud)
+    - [Guide de déploiement](https://docs.streamlit.io/streamlit-community-cloud/get-started)
+    - [Exemples d'applications déployées](https://streamlit.io/gallery)
+    """)
+

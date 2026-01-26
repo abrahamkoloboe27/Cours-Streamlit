@@ -779,7 +779,7 @@ with tab3 :
 
 with tab4 : 
     
-    a,b,c,d,e = st.tabs(["Sidebar", "Colonnes","Tabs(Onglets)", "Expander", "Code"])
+    a,b,c,d,e,f,g = st.tabs(["Sidebar", "Colonnes","Tabs(Onglets)", "Expander", "Code", "Container", "Empty"])
     
     with a : 
         st.markdown(""" 
@@ -973,3 +973,118 @@ with tab4 :
         L'utilisation de `st.code` est particulièrement utile lorsque vous souhaitez partager des exemples de code, des extraits de code ou des démonstrations 
         dans votre application Streamlit.
                                 """)
+    with f:
+        st.markdown("""
+        La fonction `st.container` dans Streamlit permet de créer un conteneur logique pour organiser plusieurs éléments ensemble. 
+        C'est particulièrement utile pour regrouper des widgets et du contenu, et pour contrôler l'ordre d'affichage des éléments.
+        
+        ### **Utilité**
+        `st.container` vous permet de :
+        - Organiser le code de manière plus structurée
+        - Regrouper des éléments liés ensemble
+        - Contrôler l'ordre d'affichage indépendamment de l'ordre du code
+        - Créer des layouts complexes
+        """)
+        
+        with st.expander('**Utilisation :**', True):
+            # Création d'un conteneur
+            container = st.container()
+            
+            # Ajout de contenu dans le conteneur
+            container.write("**Ceci est à l'intérieur du conteneur**")
+            container.button("Bouton dans le conteneur")
+            
+            # On peut continuer à ajouter du contenu au conteneur même après d'autres éléments
+            st.write("**Texte en dehors du conteneur**")
+            
+            container.write("**Plus de contenu dans le même conteneur !**")
+            
+        with st.expander("Code ", True):
+            st.code("""
+import streamlit as st
+
+# Création d'un conteneur
+container = st.container()
+
+# Ajout de contenu dans le conteneur
+container.write("Ceci est à l'intérieur du conteneur")
+container.button("Bouton dans le conteneur")
+
+# On peut continuer à ajouter du contenu au conteneur même après d'autres éléments
+st.write("Texte en dehors du conteneur")
+
+container.write("Plus de contenu dans le même conteneur !")
+                    """)
+        
+        st.markdown("""
+        **Fonctionnalités clés :**
+        - **Organisation flexible :** Permet de regrouper des éléments de manière logique
+        - **Contrôle de l'ordre :** Vous pouvez ajouter du contenu au conteneur à différents endroits de votre code
+        - **Layouts complexes :** Facilite la création de mises en page sophistiquées
+        
+        `st.container` est idéal pour créer des sections réutilisables et maintenir un code organisé dans vos applications Streamlit.
+        """)
+    
+    with g:
+        st.markdown("""
+        La fonction `st.empty` dans Streamlit crée un espace réservé (placeholder) qui peut être rempli plus tard 
+        ou mis à jour dynamiquement. C'est particulièrement utile pour créer des animations, des mises à jour en temps réel, 
+        ou pour remplacer du contenu sans avoir à recharger toute la page.
+        
+        ### **Utilité**
+        `st.empty` vous permet de :
+        - Créer des animations et des compteurs dynamiques
+        - Mettre à jour du contenu de manière asynchrone
+        - Afficher des messages temporaires
+        - Créer des indicateurs de progression personnalisés
+        """)
+        
+        with st.expander('**Utilisation :**', True):
+            import time
+            
+            # Création d'un placeholder vide
+            placeholder = st.empty()
+            
+            # Bouton pour déclencher l'animation
+            if st.button("Lancer le compte à rebours"):
+                # Compte à rebours de 5 à 1
+                for i in range(5, 0, -1):
+                    placeholder.markdown(f"### ⏰ Compte à rebours : **{i}**")
+                    time.sleep(1)
+                
+                # Remplacer par un message final
+                placeholder.success("🎉 Terminé !")
+                time.sleep(2)
+                placeholder.empty()  # Effacer le contenu
+                
+        with st.expander("Code ", True):
+            st.code("""
+import streamlit as st
+import time
+
+# Création d'un placeholder vide
+placeholder = st.empty()
+
+# Bouton pour déclencher l'animation
+if st.button("Lancer le compte à rebours"):
+    # Compte à rebours de 5 à 1
+    for i in range(5, 0, -1):
+        placeholder.markdown(f"### ⏰ Compte à rebours : **{i}**")
+        time.sleep(1)
+    
+    # Remplacer par un message final
+    placeholder.success("🎉 Terminé !")
+    time.sleep(2)
+    placeholder.empty()  # Effacer le contenu
+                    """)
+        
+        st.markdown("""
+        **Fonctionnalités clés :**
+        - **Mise à jour dynamique :** Le contenu peut être changé à tout moment
+        - **Effacement :** Utilisez `.empty()` pour supprimer le contenu
+        - **Flexibilité :** Accepte n'importe quel élément Streamlit (texte, graphique, widget, etc.)
+        - **Performance :** Permet des mises à jour sans recharger toute l'application
+        
+        `st.empty` est un outil puissant pour créer des interfaces utilisateur dynamiques et réactives dans Streamlit.
+        """)
+
