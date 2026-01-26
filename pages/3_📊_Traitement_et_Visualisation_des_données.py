@@ -97,7 +97,7 @@ with tab2 :
     `st.dataframe` est un moyen pratique d'afficher des données tabulaires dans votre application Streamlit, et il est souvent utilisé pour présenter des résultats d'analyse de données ou des jeux de données.
                 """)
 with tab3 : 
-    a,b,c,d,e = st.tabs(["📉Line Charts", "📊Bar Charts", "📌Map","🧮Matplotlib Charts","🔍Plotly Charts"])
+    a,b,c,d,e,f,g = st.tabs(["📉Line Charts", "📊Bar Charts", "📈Area Charts", "🔵Scatter Charts", "📌Map","🧮Matplotlib Charts","🔍Plotly Charts"])
     with a : 
         st.markdown("""
         La fonction `st.line_chart` dans Streamlit est utilisée pour afficher un graphique en ligne (line chart) interactif 
@@ -166,6 +166,87 @@ with tab3 :
                     """)  
     with c : 
         st.markdown("""
+        La fonction `st.area_chart` dans Streamlit est utilisée pour afficher un graphique en aires (area chart) 
+        interactif dans votre application Streamlit. Ce type de graphique est particulièrement utile pour visualiser 
+        l'évolution de valeurs cumulatives ou pour comparer plusieurs séries de données au fil du temps.
+        """)
+
+        with st.expander('**Utilisation :**', True) :            
+            df = pd.DataFrame(np.random.randn(20,3), columns = ["A","B","C"])
+            st.area_chart(df)
+        with st.expander("Code ", True):
+            st.code(""" 
+            import streamlit as st
+            import pandas as pd
+            import numpy as np
+
+            # Création d'un DataFrame de démonstration
+            df = pd.DataFrame(np.random.randn(20,3), columns = ["A","B","C"])
+
+            # Affichage du graphique en aires avec st.area_chart
+            st.area_chart(df)
+                    """)
+        st.markdown("""
+        Dans cet exemple, `df` est un DataFrame Pandas contenant plusieurs colonnes de données, et `st.area_chart(df)` 
+        est utilisé pour afficher un graphique en aires basé sur ces données.
+
+        **Fonctionnalités clés :**
+        - **Visualisation de tendances :** Idéal pour montrer l'évolution cumulative de valeurs
+        - **Comparaison de séries :** Permet de comparer visuellement plusieurs séries de données empilées
+        - **Interactivité :** Le graphique est interactif avec zoom et déplacement
+        - **Personnalisation :** Streamlit gère automatiquement les couleurs et la mise en forme
+
+        `st.area_chart` est particulièrement adapté pour visualiser des données temporelles cumulatives ou pour 
+        montrer la contribution de différentes composantes à un total.
+        """)
+    
+    with d : 
+        st.markdown("""
+        La fonction `st.scatter_chart` dans Streamlit est utilisée pour afficher un graphique de dispersion (scatter chart) 
+        interactif. Ce type de graphique est essentiel pour visualiser les relations entre deux variables numériques 
+        et identifier des patterns, corrélations ou outliers dans vos données.
+        """)
+
+        with st.expander('**Utilisation :**', True) :            
+            # Création de données avec une relation
+            chart_data = pd.DataFrame({
+                'x': np.random.randn(20),
+                'y': np.random.randn(20),
+                'z': np.random.randn(20)
+            })
+            st.scatter_chart(chart_data)
+        with st.expander("Code ", True):
+            st.code(""" 
+            import streamlit as st
+            import pandas as pd
+            import numpy as np
+
+            # Création de données avec une relation
+            chart_data = pd.DataFrame({
+                'x': np.random.randn(20),
+                'y': np.random.randn(20),
+                'z': np.random.randn(20)
+            })
+
+            # Affichage du graphique de dispersion avec st.scatter_chart
+            st.scatter_chart(chart_data)
+                    """)
+        st.markdown("""
+        Dans cet exemple, `chart_data` est un DataFrame Pandas contenant des colonnes pour les axes x et y, 
+        et `st.scatter_chart(chart_data)` affiche un graphique de dispersion interactif.
+
+        **Fonctionnalités clés :**
+        - **Analyse de corrélation :** Visualise facilement les relations entre variables
+        - **Détection de patterns :** Identifie des groupes, tendances ou anomalies
+        - **Interactivité :** Zoom, déplacement et survol des points pour plus de détails
+        - **Multidimensionnel :** Peut afficher plusieurs séries de points simultanément
+
+        `st.scatter_chart` est idéal pour l'analyse exploratoire de données, la visualisation de corrélations 
+        et l'identification de patterns dans vos datasets.
+        """)
+    
+    with e :
+        st.markdown("""
         La fonction `st.map` dans Streamlit est utilisée pour afficher une carte interactive dans votre application Streamlit. 
         Elle prend en charge la visualisation de données géographiques, telles que des points sur une carte.
         """)
@@ -199,9 +280,9 @@ with tab3 :
 
         Cette fonction est particulièrement utile lorsque vous souhaitez représenter visuellement des données spatiales, comme des emplacements géographiques spécifiques.
                             """)
-    with d :
+    with f :
         st.markdown("""
-        La fonction `st.pyplot` dans Streamlit est utilisée pour afficher des graphiques générés avec Matplotlib dans votre application 
+        La fonction `st.pyplot` dans Streamlit est utilisée pour afficher des graphiques générés avec Matplotlib dans votre application
         Streamlit. Elle offre une intégration simple et efficace avec Matplotlib pour visualiser des données dans vos applications.
 
        """)
@@ -237,7 +318,7 @@ with tab3 :
 
         L'utilisation de `st.pyplot` est courante lorsque vous avez besoin d'afficher des graphiques générés avec Matplotlib dans vos applications Streamlit. Cela peut être utile pour la visualisation de données et l'analyse exploratoire.
                             """)
-    with e :
+    with g :
         st.markdown("""
         La fonction `st.plotly_chart` dans Streamlit est utilisée pour afficher des graphiques générés avec Plotly dans votre application 
         Streamlit. Plotly est une bibliothèque de visualisation qui offre une grande flexibilité et des fonctionnalités interactives.

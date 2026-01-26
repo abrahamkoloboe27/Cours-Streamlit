@@ -1,6 +1,7 @@
-streamlit
-pandas 
-matplotlib
-matplotlib-inline
-plotly
-plotly-resampler
+streamlit>=1.32.0,<2.0.0
+pandas>=2.0.0,<3.0.0
+matplotlib>=3.7.0,<4.0.0
+matplotlib-inline>=0.1.6,<0.2.0
+plotly>=5.18.0,<6.0.0
+plotly-resampler>=0.9.0,<1.0.0
+numpy>=1.24.0,<2.0.0
